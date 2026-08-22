@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Search, Heart, ShoppingBag, Menu, X, Sun, Moon } from "lucide-react";
 import { useTheme } from "@/components/ThemeProvider";
 import { useCart } from "@/lib/cart-context";
 import { useWishlist } from "@/lib/wishlist-context";
+import { Logo } from "@/components/Logo";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -39,24 +39,7 @@ export function Navbar() {
       }`}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex shrink-0 items-center gap-2">
-          <Image
-            src="/images/logo/logo-mark.png"
-            alt="T.Perfect logo"
-            width={40}
-            height={34}
-            priority
-            className="h-9 w-auto rounded-lg sm:h-10"
-          />
-          <span className="text-xl font-extrabold italic tracking-tight sm:text-2xl">
-            <span className="bg-gradient-to-b from-[#5aa7e0] to-[#1a4d85] bg-clip-text text-transparent">
-              T.
-            </span>
-            <span className="bg-gradient-to-b from-[#c3e07a] to-[#5a8f1e] bg-clip-text text-transparent">
-              PERFECT
-            </span>
-          </span>
-        </Link>
+        <Logo size="md" priority />
 
         <nav className="hidden items-center gap-8 lg:flex">
           {NAV_LINKS.map((link) => (

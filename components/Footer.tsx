@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Mail, MessageCircle, Globe } from "lucide-react";
+import { Logo } from "@/components/Logo";
 
 const FOOTER_LINKS = {
   Shop: [
@@ -26,10 +27,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 gap-10 sm:grid-cols-2 lg:grid-cols-5">
           <div className="col-span-2">
-            <Link href="/" className="text-xl font-bold tracking-tight">
-              <span className="text-foreground">T.</span>
-              <span className="text-accent">PERFECT</span>
-            </Link>
+            <Logo size="md" />
             <p className="mt-3 max-w-xs text-sm text-muted">Perfect Clean, Better Living.</p>
             <div className="mt-5 flex items-center gap-3">
               {[Globe, Mail, MessageCircle].map((Icon, i) => (
