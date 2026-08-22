@@ -6,6 +6,7 @@ import { Heart, X } from "lucide-react";
 import { useWishlist } from "@/lib/wishlist-context";
 import { useCart } from "@/lib/cart-context";
 import { getProductById } from "@/lib/products";
+import { PriceDisplay } from "@/components/PriceDisplay";
 
 export default function WishlistPage() {
   const { ids, toggle } = useWishlist();
@@ -51,7 +52,7 @@ export default function WishlistPage() {
               >
                 {product.name}
               </Link>
-              <p className="mt-1 text-sm font-bold text-foreground">Rs. {product.price.toLocaleString()}</p>
+              <PriceDisplay price={product.price} size="xs" className="mt-1" />
               <button
                 type="button"
                 onClick={() => addItem(product.id)}

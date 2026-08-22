@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { CheckCircle2, X } from "lucide-react";
 import { useCart } from "@/lib/cart-context";
 import { getProductById } from "@/lib/products";
+import { PriceDisplay } from "@/components/PriceDisplay";
 
 export function CartDrawer() {
   const { isDrawerOpen, closeDrawer, lastAdded, lines, itemCount } = useCart();
@@ -71,7 +72,7 @@ export function CartDrawer() {
                 <div className="min-w-0 flex-1">
                   <p className="line-clamp-1 text-sm font-semibold text-foreground">{product.name}</p>
                   <p className="mt-1 text-xs text-muted">Qty added: {lastAdded?.qty}</p>
-                  <p className="mt-1 text-sm font-bold text-foreground">Rs. {product.price.toLocaleString()}</p>
+                  <PriceDisplay price={product.price} size="xs" className="mt-1" />
                 </div>
               </div>
 

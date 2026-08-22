@@ -4,14 +4,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { Star } from "lucide-react";
 import { WishlistButton } from "@/components/WishlistButton";
+import { PriceDisplay } from "@/components/PriceDisplay";
 import type { Product } from "@/lib/products";
 
 export function ProductCard({ product }: { product: Product }) {
-  const discount =
-    product.originalPrice && product.originalPrice > product.price
-      ? Math.round(100 - (product.price / product.originalPrice) * 100)
-      : null;
-
   return (
     <Link
       href={`/product/${product.id}`}
@@ -29,11 +25,6 @@ export function ProductCard({ product }: { product: Product }) {
         {product.isNew && (
           <span className="absolute left-3 top-3 rounded-full bg-foreground px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-background">
             New
-          </span>
-        )}
-        {discount && (
-          <span className="absolute right-3 top-3 rounded-full bg-accent px-2.5 py-1 text-[10px] font-semibold text-accent-foreground">
-            -{discount}%
           </span>
         )}
         <WishlistButton
@@ -55,12 +46,7 @@ export function ProductCard({ product }: { product: Product }) {
           <span className="text-xs text-muted">({product.reviews})</span>
         </div>
 
-        <div className="mt-2 flex items-center gap-2">
-          <span className="text-base font-bold text-foreground sm:text-lg">Rs. {product.price.toLocaleString()}</span>
-          {product.originalPrice && (
-            <span className="text-sm text-muted line-through">Rs. {product.originalPrice.toLocaleString()}</span>
-          )}
-        </div>
+        <PriceDisplay price={product.price} size="sm" className="mt-2" />
       </div>
     </Link>
   );

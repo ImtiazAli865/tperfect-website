@@ -75,7 +75,7 @@ export function Navbar() {
           <button
             aria-label="Toggle dark mode"
             onClick={toggleTheme}
-            className="rounded-full p-2 text-foreground/80 transition-colors hover:bg-surface-muted hover:text-foreground"
+            className="hidden rounded-full p-2 text-foreground/80 transition-colors hover:bg-surface-muted hover:text-foreground sm:inline-flex"
           >
             {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </button>
@@ -138,10 +138,18 @@ export function Navbar() {
             >
               <Heart className="h-4 w-4" /> Wishlist{wishlistCount > 0 ? ` (${wishlistCount})` : ""}
             </Link>
-            <button className="flex-1 rounded-full bg-foreground py-2.5 text-sm font-medium text-background">
-              Sign in
+            <button
+              type="button"
+              onClick={toggleTheme}
+              className="flex flex-1 items-center justify-center gap-2 rounded-full border border-border py-2.5 text-sm font-medium"
+            >
+              {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+              {theme === "dark" ? "Light Mode" : "Dark Mode"}
             </button>
           </div>
+          <button className="mt-3 w-full rounded-full bg-foreground py-2.5 text-sm font-medium text-background">
+            Sign in
+          </button>
         </div>
       )}
 

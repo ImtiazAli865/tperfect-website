@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Minus, Plus, X, ShoppingBag } from "lucide-react";
 import { useCart } from "@/lib/cart-context";
 import { getProductById } from "@/lib/products";
+import { PriceDisplay } from "@/components/PriceDisplay";
 
 export default function CartPage() {
   const { lines, setQty, removeItem } = useCart();
@@ -46,55 +47,59 @@ export default function CartPage() {
           {items.map(({ product, qty }) => (
             <div
               key={product.id}
-              className="flex items-center gap-4 rounded-2xl border border-border bg-surface p-4"
+              className="flex flex-col gap-4 rounded-2xl border border-border bg-surface p-4 sm:flex-row sm:items-center"
             >
-              <Link href={`/product/${product.id}`} className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-surface-muted">
-                <Image src={product.image} alt={product.name} fill sizes="80px" className="object-contain p-1.5" />
-              </Link>
-
-              <div className="min-w-0 flex-1">
-                <Link
-                  href={`/product/${product.id}`}
-                  className="line-clamp-1 text-sm font-semibold text-foreground hover:underline sm:text-base"
-                >
-                  {product.name}
+              <div className="flex min-w-0 flex-1 items-center gap-4">
+                <Link href={`/product/${product.id}`} className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-surface-muted">
+                  <Image src={product.image} alt={product.name} fill sizes="80px" className="object-contain p-1.5" />
                 </Link>
-                <p className="mt-1 text-xs text-muted">{product.category}</p>
-                <p className="mt-1 text-sm font-bold text-foreground">Rs. {product.price.toLocaleString()}</p>
+
+                <div className="min-w-0 flex-1">
+                  <Link
+                    href={`/product/${product.id}`}
+                    className="line-clamp-1 text-sm font-semibold text-foreground hover:underline sm:text-base"
+                  >
+                    {product.name}
+                  </Link>
+                  <p className="mt-1 text-xs text-muted">{product.category}</p>
+                  <PriceDisplay price={product.price} size="xs" className="mt-1" />
+                </div>
               </div>
 
-              <div className="flex shrink-0 items-center rounded-full border border-border">
+              <div className="flex items-center justify-between gap-4 sm:shrink-0 sm:justify-end sm:gap-6">
+                <div className="flex shrink-0 items-center rounded-full border border-border">
+                  <button
+                    type="button"
+                    aria-label="Decrease quantity"
+                    onClick={() => setQty(product.id, qty - 1)}
+                    className="flex h-9 w-8 items-center justify-center text-foreground transition-colors hover:bg-surface-muted"
+                  >
+                    <Minus className="h-3.5 w-3.5" />
+                  </button>
+                  <span className="w-6 text-center text-sm font-semibold text-foreground">{qty}</span>
+                  <button
+                    type="button"
+                    aria-label="Increase quantity"
+                    onClick={() => setQty(product.id, qty + 1)}
+                    className="flex h-9 w-8 items-center justify-center text-foreground transition-colors hover:bg-surface-muted"
+                  >
+                    <Plus className="h-3.5 w-3.5" />
+                  </button>
+                </div>
+
+                <p className="hidden w-24 shrink-0 text-right text-sm font-bold text-foreground sm:block">
+                  Rs. {(product.price * qty).toLocaleString()}
+                </p>
+
                 <button
                   type="button"
-                  aria-label="Decrease quantity"
-                  onClick={() => setQty(product.id, qty - 1)}
-                  className="flex h-9 w-8 items-center justify-center text-foreground transition-colors hover:bg-surface-muted"
+                  aria-label="Remove item"
+                  onClick={() => removeItem(product.id)}
+                  className="shrink-0 rounded-full p-2 text-muted transition-colors hover:bg-surface-muted hover:text-foreground"
                 >
-                  <Minus className="h-3.5 w-3.5" />
-                </button>
-                <span className="w-6 text-center text-sm font-semibold text-foreground">{qty}</span>
-                <button
-                  type="button"
-                  aria-label="Increase quantity"
-                  onClick={() => setQty(product.id, qty + 1)}
-                  className="flex h-9 w-8 items-center justify-center text-foreground transition-colors hover:bg-surface-muted"
-                >
-                  <Plus className="h-3.5 w-3.5" />
+                  <X className="h-4 w-4" />
                 </button>
               </div>
-
-              <p className="hidden w-24 shrink-0 text-right text-sm font-bold text-foreground sm:block">
-                Rs. {(product.price * qty).toLocaleString()}
-              </p>
-
-              <button
-                type="button"
-                aria-label="Remove item"
-                onClick={() => removeItem(product.id)}
-                className="shrink-0 rounded-full p-2 text-muted transition-colors hover:bg-surface-muted hover:text-foreground"
-              >
-                <X className="h-4 w-4" />
-              </button>
             </div>
           ))}
         </div>

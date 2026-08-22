@@ -51,7 +51,7 @@ export function AppPromo() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
               style={{ transformPerspective: 1200 }}
-              className="relative w-[320px] sm:w-[440px]"
+              className="relative w-[240px] min-[400px]:w-[280px] sm:w-[440px]"
             >
               <div className="relative aspect-[4/5] rounded-[3rem] border-[6px] border-neutral-900 bg-neutral-900 p-2 shadow-2xl">
                 {/* Side buttons */}

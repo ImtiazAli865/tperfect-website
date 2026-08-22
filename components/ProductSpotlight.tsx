@@ -6,6 +6,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { products } from "@/lib/products";
+import { PriceDisplay } from "@/components/PriceDisplay";
 
 const spotlightItems = products.slice(0, 6);
 
@@ -67,7 +68,7 @@ export function ProductSpotlight() {
               </span>
             </div>
 
-            <p className="mt-4 text-2xl font-bold text-foreground">Rs. {product.price.toLocaleString()}</p>
+            <PriceDisplay price={product.price} size="lg" className="mt-4" />
 
             <div className="mt-6 flex flex-wrap items-center gap-4">
               <Link
@@ -82,7 +83,7 @@ export function ProductSpotlight() {
             </div>
 
             {/* Thumbnails */}
-            <div className="mt-8 flex items-center gap-3">
+            <div className="-mx-1 mt-8 flex items-center gap-3 overflow-x-auto px-1 pb-1">
               {spotlightItems.map((item, i) => (
                 <button
                   key={item.id}

@@ -5,6 +5,7 @@ import { ProductGridSection } from "@/components/ProductGridSection";
 import { AddToCartButton } from "@/components/AddToCartButton";
 import { WishlistButton } from "@/components/WishlistButton";
 import { ShareButton } from "@/components/ShareButton";
+import { PriceDisplay } from "@/components/PriceDisplay";
 import { getProductById, getRelatedProducts } from "@/lib/products";
 
 export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
@@ -42,14 +43,9 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             </span>
           </div>
 
-          <div className="mt-4 flex items-center gap-3">
-            <span className="text-3xl font-bold text-foreground">Rs. {product.price.toLocaleString()}</span>
-            {product.originalPrice && (
-              <span className="text-lg text-muted line-through">Rs. {product.originalPrice.toLocaleString()}</span>
-            )}
-          </div>
+          <PriceDisplay price={product.price} size="xl" className="mt-4" />
 
-          <div className="mt-6 flex items-center gap-3">
+          <div className="mt-6 flex flex-wrap items-center gap-3">
             <AddToCartButton productId={product.id} />
             <WishlistButton productId={product.id} />
             <button
