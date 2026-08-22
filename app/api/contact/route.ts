@@ -41,7 +41,7 @@ export async function POST(request: Request) {
   try {
     const resend = new Resend(process.env.RESEND_API_KEY);
     const { error } = await resend.emails.send({
-      from: "T.perfect Contact Form <onboarding@resend.dev>",
+      from: "T.perfect Contact Form <contact@tperfect.org>",
       to: CONTACT_TO_EMAIL,
       replyTo: email,
       subject: `New contact form message from ${name}`,
