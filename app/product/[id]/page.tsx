@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
-import { Star, ShoppingBag, Heart, Repeat, Share2, CheckCircle2 } from "lucide-react";
+import { Star, Heart, Repeat, Share2, CheckCircle2 } from "lucide-react";
 import { ProductGallery } from "@/components/ProductGallery";
 import { ProductGridSection } from "@/components/ProductGridSection";
+import { AddToCartButton } from "@/components/AddToCartButton";
 import { getProductById, getRelatedProducts } from "@/lib/products";
 
 export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
@@ -47,9 +48,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
           </div>
 
           <div className="mt-6 flex items-center gap-3">
-            <button className="flex flex-1 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-accent to-amber-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-accent/20 transition-transform hover:scale-[1.02]">
-              <ShoppingBag className="h-4 w-4" /> Add to Cart
-            </button>
+            <AddToCartButton productId={product.id} />
             <button
               aria-label="Add to wishlist"
               className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:bg-surface-muted"

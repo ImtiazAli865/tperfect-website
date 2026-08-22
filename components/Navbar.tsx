@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Search, Heart, ShoppingBag, Menu, X, Sun, Moon } from "lucide-react";
 import { useTheme } from "@/components/ThemeProvider";
+import { useCart } from "@/lib/cart-context";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -18,6 +19,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const { itemCount } = useCart();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -86,15 +88,18 @@ export function Navbar() {
           >
             <Heart className="h-5 w-5" />
           </button>
-          <button
+          <Link
+            href="/cart"
             aria-label="Cart"
             className="relative rounded-full p-2 text-foreground/80 transition-colors hover:bg-surface-muted hover:text-foreground"
           >
             <ShoppingBag className="h-5 w-5" />
-            <span className="absolute right-1 top-1 flex h-4 w-4 items-center justify-center rounded-full bg-accent text-[10px] font-semibold text-accent-foreground">
-              0
-            </span>
-          </button>
+            {itemCount > 0 && (
+              <span className="absolute right-1 top-1 flex h-4 w-4 items-center justify-center rounded-full bg-accent text-[10px] font-semibold text-accent-foreground">
+                {itemCount > 9 ? "9+" : itemCount}
+              </span>
+            )}
+          </Link>
           <button className="ml-1 hidden rounded-full bg-foreground px-5 py-2 text-sm font-medium text-background transition-opacity hover:opacity-90 sm:inline-flex">
             Sign in
           </button>
