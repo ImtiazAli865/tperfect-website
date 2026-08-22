@@ -73,6 +73,41 @@ body {
   animation: marquee 28s linear infinite;
 }
 
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 5s ease-in-out infinite;
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    background-position: -150% 0;
+  }
+  35% {
+    background-position: 150% 0;
+  }
+  100% {
+    background-position: 150% 0;
+  }
+}
+
+.text-shimmer {
+  background-image: linear-gradient(110deg, #ffffff 35%, #ffe3c2 50%, #ffffff 65%);
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer-sweep 6s ease-in-out infinite;
+}
+
 ::selection {
   background: var(--accent-soft);
   color: var(--accent);

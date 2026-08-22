@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 export function AppPromo() {
@@ -8,14 +9,30 @@ export function AppPromo() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
           <div className="text-center lg:text-left">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Shop Comfort, Anytime.</h2>
+            <motion.h2
+              initial={{ opacity: 0, y: 20, rotateX: -20 }}
+              whileInView={{ opacity: 1, y: 0, rotateX: -6 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              style={{
+                transformPerspective: 600,
+                textShadow:
+                  "0 1px 0 rgba(0,0,0,0.25), 0 2px 0 rgba(0,0,0,0.2), 0 3px 0 rgba(0,0,0,0.15), 0 6px 10px rgba(0,0,0,0.35)",
+              }}
+              className="text-shimmer animate-float-slow inline-block text-3xl font-bold tracking-tight sm:text-4xl"
+            >
+              Shop Comfort, Anytime.
+            </motion.h2>
             <p className="mx-auto mt-4 max-w-md text-sm text-white/70 sm:text-base lg:mx-0">
-              The T.perfect mobile app is coming soon. Get early access to new drops, exclusive
-              deals, and seamless shopping.
+              Shop premium bedding, towels &amp; home essentials — all in one place. Fast delivery
+              across Pakistan, with Cash on Delivery on every order.
             </p>
-            <button className="mt-8 rounded-full bg-gradient-to-r from-accent to-amber-500 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-accent/20 transition-transform hover:scale-[1.03]">
-              Notify Me at Launch
-            </button>
+            <Link
+              href="/shop"
+              className="mt-8 inline-flex rounded-full bg-gradient-to-r from-accent to-amber-500 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-accent/20 transition-transform hover:scale-[1.03]"
+            >
+              Shop Now
+            </Link>
           </div>
 
           <div className="relative flex h-[560px] items-center justify-center sm:h-[680px]">
