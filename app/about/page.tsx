@@ -1,5 +1,4 @@
 import { Heart, Leaf, ShieldCheck } from "lucide-react";
-import { PlaceholderImage } from "@/components/PlaceholderImage";
 
 const VALUES = [
   {
@@ -40,7 +39,14 @@ export default function AboutPage() {
               Pakistan, with Cash on Delivery and fast dispatch on every order.
             </p>
           </div>
-          <PlaceholderImage label="Our Story" className="aspect-[4/3] w-full rounded-3xl border border-border" />
+          <video
+            src="/video/about-story.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="aspect-[4/3] w-full rounded-3xl border border-border object-cover"
+          />
         </div>
       </section>
 
