@@ -2,14 +2,58 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowRight, Star, BadgeCheck, Flame } from "lucide-react";
+import { ProductImageStack, type StackImage } from "./ProductImageStack";
+import { FloatingGapImage, type FloatingGapImageItem } from "./FloatingGapImage";
+
+const HERO_STACK_IMAGES: StackImage[] = [
+  { src: "/images/hero-stack/bed-pillow.png", alt: "Gold Bed Pillow" },
+  { src: "/images/hero-stack/neck-pillow.png", alt: "Travel Neck Pillow" },
+  { src: "/images/hero-stack/bean-bag.png", alt: "Bean Bag Chair" },
+  { src: "/images/hero-stack/kitchen-apron.png", alt: "Kitchen Apron" },
+  { src: "/images/hero-stack/hair-cap.png", alt: "Hair Drying Cap" },
+  { src: "/images/hero-stack/bath-slippers.png", alt: "Bath Slippers" },
+];
+
+const GAP_FLOAT_IMAGES: FloatingGapImageItem[] = [
+  { src: "/images/hero-stack/hanging-towel-pack-of-4.jpeg", alt: "Hanging Towel Pack of 4" },
+  { src: "/images/hero-stack/wash-cloth.png", alt: "Microfiber Wash Cloth Pack" },
+  { src: "/images/hero-stack/ball-fiber.png", alt: "Ball Fiber Filling" },
+];
+
+const headingContainer = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.14, delayChildren: 0.2 },
+  },
+};
+
+const headingLine = {
+  hidden: { opacity: 0, y: 60, rotateX: -70 },
+  show: {
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] as const },
+  },
+};
 
 export function Hero() {
   return (
     <section className="relative overflow-hidden bg-navy text-white">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(224,123,63,0.18),transparent_55%)]" />
-      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8 lg:py-28">
+      <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8 lg:py-28">
+        {/* Floating gap image — cycles through a few products, sits between the text and the product stack */}
+        <div className="pointer-events-none absolute left-1/2 top-1/2 z-10 hidden -translate-x-1/2 -translate-y-1/2 lg:block">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+          >
+            <FloatingGapImage images={GAP_FLOAT_IMAGES} />
+          </motion.div>
+        </div>
+
         {/* Left: text content */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -20,22 +64,48 @@ export function Hero() {
             <span className="h-1.5 w-1.5 rounded-full bg-accent" /> NEW COLLECTION
           </span>
 
-          <h1 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
-            THE ONLY
-            <br />
-            <span className="bg-gradient-to-r from-accent via-orange-300 to-amber-200 bg-clip-text text-transparent">
-              T. PERFECT
-            </span>
-            <br />
-            STORE.
-          </h1>
+          <motion.h1
+            variants={headingContainer}
+            initial="hidden"
+            animate="show"
+            style={{ perspective: 1000 }}
+            className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl"
+          >
+            <motion.span
+              variants={headingLine}
+              style={{ transformOrigin: "50% 100%" }}
+              className="text-3d block"
+            >
+              THE ONLY
+            </motion.span>
+            <motion.span variants={headingLine} style={{ transformOrigin: "50% 100%" }} className="block">
+              <span className="text-3d-blue">T.</span> <span className="text-3d-green">PERFECT</span>
+            </motion.span>
+            <motion.span
+              variants={headingLine}
+              style={{ transformOrigin: "50% 100%" }}
+              className="text-3d block"
+            >
+              STORE.
+            </motion.span>
+          </motion.h1>
 
-          <p className="mt-6 max-w-md text-base text-white/70 sm:text-lg">
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.95, duration: 0.5 }}
+            className="mt-6 max-w-md text-base text-white/70 sm:text-lg"
+          >
             Premium pillows, towels &amp; home essentials. Curated for comfort. Built for every
             home.
-          </p>
+          </motion.p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-5">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.1, duration: 0.5 }}
+            className="mt-8 flex flex-wrap items-center gap-5"
+          >
             <Link
               href="/shop"
               className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-accent to-amber-500 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-accent/20 transition-transform hover:scale-[1.03]"
@@ -48,92 +118,51 @@ export function Hero() {
             >
               Browse Categories
             </Link>
-          </div>
+          </motion.div>
         </motion.div>
 
-        {/* Right: floating images */}
+        {/* Right: stacked product image animation */}
         <div className="relative h-[420px] sm:h-[480px] lg:h-[520px]">
-          <motion.div
-            initial={{ opacity: 0, y: 20, rotate: -6 }}
-            animate={{ opacity: 1, y: [0, -14, 0], rotate: -6 }}
-            transition={{ y: { duration: 5, repeat: Infinity, ease: "easeInOut" }, opacity: { duration: 0.6 } }}
-            className="absolute left-2 top-4 w-40 sm:w-52 lg:w-60"
-          >
-            <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
-              <Image
-                src="/images/bed-pillows/elite-bed-pillow-1.png"
-                alt="Elite Bed Pillow"
-                fill
-                sizes="240px"
-                className="object-cover"
-              />
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20, rotate: 5 }}
-            animate={{ opacity: 1, y: [0, 16, 0], rotate: 5 }}
-            transition={{ y: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.4 }, opacity: { duration: 0.6, delay: 0.1 } }}
-            className="absolute right-4 top-0 w-36 sm:w-48 lg:w-56"
-          >
-            <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
-              <Image
-                src="/images/bath-towels/hanging-towel-pack-of-5-1.png"
-                alt="Hanging Towel Set"
-                fill
-                sizes="224px"
-                className="object-cover"
-              />
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20, rotate: -3 }}
-            animate={{ opacity: 1, y: [0, -10, 0], rotate: -3 }}
-            transition={{ y: { duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }, opacity: { duration: 0.6, delay: 0.2 } }}
-            className="absolute bottom-4 left-16 w-32 sm:w-44 lg:w-52"
-          >
-            <div className="relative aspect-square w-full overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
-              <Image
-                src="/images/wash-cloths/wash-cloth-6pack-pack-of-2-1.png"
-                alt="Microfiber Wash Cloth Set"
-                fill
-                sizes="208px"
-                className="object-cover"
-              />
-            </div>
-          </motion.div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <ProductImageStack images={HERO_STACK_IMAGES} />
+          </div>
 
           {/* Floating badges */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.5, duration: 0.5 }}
-            className="absolute right-0 top-24 flex items-center gap-2 rounded-2xl border border-white/10 bg-navy-soft/90 px-4 py-3 shadow-xl backdrop-blur"
+            className="absolute right-0 top-0 flex items-center gap-2 rounded-2xl border border-white/10 bg-navy-soft/90 px-4 py-3 shadow-xl backdrop-blur"
           >
             <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
             <span className="text-xs font-medium text-white/90">4.9 — 10K+ Reviews</span>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.7, duration: 0.5 }}
-            className="absolute bottom-24 right-2 flex items-center gap-2 rounded-2xl border border-white/10 bg-navy-soft/90 px-4 py-3 shadow-xl backdrop-blur sm:right-6"
-          >
-            <BadgeCheck className="h-4 w-4 text-accent" />
-            <span className="text-xs font-medium text-white/90">100% Cotton · Premium Quality</span>
-          </motion.div>
+          <div className="absolute bottom-0 right-2 sm:right-6">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.7, duration: 0.5 }}
+            >
+              <div className="animate-float-badge-a flex items-center gap-2 rounded-2xl border border-white/10 bg-navy-soft/90 px-4 py-3 shadow-xl backdrop-blur">
+                <BadgeCheck className="h-4 w-4 text-accent" />
+                <span className="text-xs font-medium text-white/90">100% Cotton · Premium Quality</span>
+              </div>
+            </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.9, duration: 0.5 }}
-            className="absolute bottom-0 left-0 flex items-center gap-2 rounded-2xl border border-white/10 bg-navy-soft/90 px-4 py-3 shadow-xl backdrop-blur"
-          >
-            <Flame className="h-4 w-4 text-accent" />
-            <span className="text-xs font-medium text-white/90">Just Launched — New Season</span>
-          </motion.div>
+          <div className="absolute bottom-0 left-0">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.9, duration: 0.5 }}
+            >
+              <div className="animate-float-badge-b flex items-center gap-2 rounded-2xl border border-white/10 bg-navy-soft/90 px-4 py-3 shadow-xl backdrop-blur">
+                <Flame className="h-4 w-4 text-accent" />
+                <span className="text-xs font-medium text-white/90">Just Launched — New Season</span>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>

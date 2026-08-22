@@ -88,6 +88,85 @@ body {
   animation: float-slow 5s ease-in-out infinite;
 }
 
+@keyframes float-towel {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-14px);
+  }
+}
+
+.animate-float-towel {
+  animation: float-towel 3.5s ease-in-out infinite alternate;
+}
+
+@keyframes float-badge {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float-badge-a {
+  animation: float-badge 3s ease-in-out infinite alternate;
+}
+
+.text-3d {
+  text-shadow:
+    1px 1px 0 rgba(8, 10, 16, 0.55),
+    2px 2px 0 rgba(8, 10, 16, 0.5),
+    3px 3px 0 rgba(8, 10, 16, 0.45),
+    4px 4px 0 rgba(8, 10, 16, 0.4),
+    5px 5px 0 rgba(8, 10, 16, 0.32),
+    6px 8px 16px rgba(0, 0, 0, 0.55);
+}
+
+.text-3d-accent {
+  text-shadow:
+    1px 1px 0 rgba(122, 56, 16, 0.6),
+    2px 2px 0 rgba(122, 56, 16, 0.55),
+    3px 3px 0 rgba(122, 56, 16, 0.5),
+    4px 4px 0 rgba(122, 56, 16, 0.42),
+    5px 5px 0 rgba(122, 56, 16, 0.34),
+    6px 8px 18px rgba(224, 123, 63, 0.5);
+}
+
+.text-3d-blue {
+  background-image: linear-gradient(180deg, #eaf4ff 0%, #8fc7fb 25%, #3f86c9 55%, #0b3f6e 80%, #6fb0e8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow:
+    1px 1px 0 rgba(15, 60, 110, 0.65),
+    2px 2px 0 rgba(15, 60, 110, 0.58),
+    3px 3px 0 rgba(15, 60, 110, 0.5),
+    4px 4px 0 rgba(15, 60, 110, 0.42),
+    5px 5px 0 rgba(15, 60, 110, 0.34),
+    6px 8px 18px rgba(63, 134, 201, 0.55);
+}
+
+.text-3d-green {
+  background-image: linear-gradient(180deg, #f6fbd6 0%, #c3e07a 25%, #7cb332 55%, #4c7a14 80%, #a4d24a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow:
+    1px 1px 0 rgba(60, 95, 15, 0.65),
+    2px 2px 0 rgba(60, 95, 15, 0.58),
+    3px 3px 0 rgba(60, 95, 15, 0.5),
+    4px 4px 0 rgba(60, 95, 15, 0.42),
+    5px 5px 0 rgba(60, 95, 15, 0.34),
+    6px 8px 18px rgba(124, 179, 50, 0.55);
+}
+
+.animate-float-badge-b {
+  animation: float-badge 3.6s ease-in-out infinite alternate;
+  animation-delay: 0.4s;
+}
+
 @keyframes shimmer-sweep {
   0% {
     background-position: -150% 0;
