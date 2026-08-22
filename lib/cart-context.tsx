@@ -7,6 +7,8 @@ export type CartLine = {
   qty: number;
 };
 
+export type LastAdded = { id: string; qty: number };
+
 type CartContextValue = {
   lines: CartLine[];
   itemCount: number;
@@ -14,6 +16,9 @@ type CartContextValue = {
   removeItem: (id: string) => void;
   setQty: (id: string, qty: number) => void;
   clearCart: () => void;
+  isDrawerOpen: boolean;
+  lastAdded: LastAdded | null;
+  closeDrawer: () => void;
 };
 
 const CartContext = createContext<CartContextValue | undefined>(undefined);
@@ -26,6 +31,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   // after mount to avoid a hydration mismatch.
   const [lines, setLines] = useState<CartLine[]>([]);
   const [hydrated, setHydrated] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [lastAdded, setLastAdded] = useState<LastAdded | null>(null);
 
   useEffect(() => {
     try {
@@ -51,7 +58,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       }
       return [...prev, { id, qty }];
     });
+    setLastAdded({ id, qty });
+    setIsDrawerOpen(true);
   };
+
+  const closeDrawer = () => setIsDrawerOpen(false);
 
   const removeItem = (id: string) => {
     setLines((prev) => prev.filter((line) => line.id !== id));
@@ -70,7 +81,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const itemCount = lines.reduce((sum, line) => sum + line.qty, 0);
 
   return (
-    <CartContext.Provider value={{ lines, itemCount, addItem, removeItem, setQty, clearCart }}>
+    <CartContext.Provider
+      value={{ lines, itemCount, addItem, removeItem, setQty, clearCart, isDrawerOpen, lastAdded, closeDrawer }}
+    >
       {children}
     </CartContext.Provider>
   );

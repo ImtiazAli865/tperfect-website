@@ -7,6 +7,7 @@ import { CartProvider } from "@/lib/cart-context";
 import { WishlistProvider } from "@/lib/wishlist-context";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { CartDrawer } from "@/components/CartDrawer";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -42,6 +43,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               <Navbar />
               <main className="flex-1">{children}</main>
               <Footer />
+              <CartDrawer />
             </WishlistProvider>
           </CartProvider>
         </ThemeProvider>
