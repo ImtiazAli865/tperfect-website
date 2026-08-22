@@ -66,7 +66,7 @@ export function CartDrawer() {
             <div className="flex-1 overflow-y-auto px-5 py-4">
               <div className="flex items-center gap-4 rounded-xl border border-border bg-surface p-3">
                 <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-surface-muted">
-                  <Image src={product.image} alt={product.name} fill sizes="64px" className="object-cover" />
+                  <Image src={product.image} alt={product.name} fill sizes="64px" className="object-contain p-1" />
                 </div>
                 <div className="min-w-0 flex-1">
                   <p className="line-clamp-1 text-sm font-semibold text-foreground">{product.name}</p>

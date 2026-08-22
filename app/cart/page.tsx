@@ -49,7 +49,7 @@ export default function CartPage() {
               className="flex items-center gap-4 rounded-2xl border border-border bg-surface p-4"
             >
               <Link href={`/product/${product.id}`} className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-surface-muted">
-                <Image src={product.image} alt={product.name} fill sizes="80px" className="object-cover" />
+                <Image src={product.image} alt={product.name} fill sizes="80px" className="object-contain p-1.5" />
               </Link>
 
               <div className="min-w-0 flex-1">

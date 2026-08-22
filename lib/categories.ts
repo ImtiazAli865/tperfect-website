@@ -22,7 +22,7 @@ export const categories: Category[] = [
     image: "/images/kitchen/kitchen-apron-1.png",
     note: "Aprons",
   },
-  { name: "Wash Cloths", slug: "wash-cloths", count: 3, image: "/images/wash-cloths/wash-cloth-lifestyle-1.png" },
+  { name: "Wash Cloths", slug: "wash-cloths", count: 5, image: "/images/wash-cloths/wash-cloth-lifestyle-1.png" },
   {
     name: "Baby Care",
     slug: "baby-care",

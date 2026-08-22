@@ -18,7 +18,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
-        <ProductGallery name={product.name} image={product.image} />
+        <ProductGallery name={product.name} images={product.images} />
 
         <div>
           <span className="inline-flex items-center gap-1.5 rounded-full bg-accent-soft px-3 py-1 text-xs font-semibold text-accent">

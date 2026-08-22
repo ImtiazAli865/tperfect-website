@@ -7,6 +7,7 @@ import { useTheme } from "@/components/ThemeProvider";
 import { useCart } from "@/lib/cart-context";
 import { useWishlist } from "@/lib/wishlist-context";
 import { Logo } from "@/components/Logo";
+import { SearchModal } from "@/components/SearchModal";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -19,6 +20,7 @@ const NAV_LINKS = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const { itemCount } = useCart();
   const { count: wishlistCount } = useWishlist();
@@ -55,8 +57,18 @@ export function Navbar() {
 
         <div className="flex items-center gap-1 sm:gap-2">
           <button
+            type="button"
             aria-label="Search"
+            onClick={() => setSearchOpen(true)}
             className="hidden rounded-full p-2 text-foreground/80 transition-colors hover:bg-surface-muted hover:text-foreground sm:inline-flex"
+          >
+            <Search className="h-5 w-5" />
+          </button>
+          <button
+            type="button"
+            aria-label="Search"
+            onClick={() => setSearchOpen(true)}
+            className="rounded-full p-2 text-foreground/80 transition-colors hover:bg-surface-muted hover:text-foreground sm:hidden"
           >
             <Search className="h-5 w-5" />
           </button>
@@ -132,6 +144,8 @@ export function Navbar() {
           </div>
         </div>
       )}
+
+      <SearchModal isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
     </header>
   );
 }

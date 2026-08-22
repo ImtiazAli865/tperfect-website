@@ -200,7 +200,7 @@ export default function CheckoutPage() {
             {items.map(({ product, qty }) => (
               <div key={product.id} className="flex items-center gap-3">
                 <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-lg bg-surface-muted">
-                  <Image src={product.image} alt={product.name} fill sizes="48px" className="object-cover" />
+                  <Image src={product.image} alt={product.name} fill sizes="48px" className="object-contain p-1" />
                   <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-foreground text-[10px] font-semibold text-background">
                     {qty}
                   </span>

@@ -40,7 +40,7 @@ export function ProductSpotlight() {
                   alt={product.name}
                   fill
                   sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-cover"
+                  className="object-contain p-6"
                 />
               </div>
             </motion.div>
@@ -88,11 +88,11 @@ export function ProductSpotlight() {
                   key={item.id}
                   onClick={() => setIndex(i)}
                   aria-label={item.name}
-                  className={`relative h-14 w-14 shrink-0 overflow-hidden rounded-xl border-2 transition-colors ${
+                  className={`relative h-14 w-14 shrink-0 overflow-hidden rounded-xl border-2 bg-surface-muted transition-colors ${
                     i === index ? "border-accent" : "border-transparent"
                   }`}
                 >
-                  <Image src={item.image} alt={item.name} fill sizes="56px" className="object-cover" />
+                  <Image src={item.image} alt={item.name} fill sizes="56px" className="object-contain p-1" />
                 </button>
               ))}
             </div>
