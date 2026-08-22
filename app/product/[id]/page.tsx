@@ -1,8 +1,10 @@
 import { notFound } from "next/navigation";
-import { Star, Heart, Repeat, Share2, CheckCircle2 } from "lucide-react";
+import { Star, Repeat, CheckCircle2 } from "lucide-react";
 import { ProductGallery } from "@/components/ProductGallery";
 import { ProductGridSection } from "@/components/ProductGridSection";
 import { AddToCartButton } from "@/components/AddToCartButton";
+import { WishlistButton } from "@/components/WishlistButton";
+import { ShareButton } from "@/components/ShareButton";
 import { getProductById, getRelatedProducts } from "@/lib/products";
 
 export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
@@ -49,24 +51,14 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
 
           <div className="mt-6 flex items-center gap-3">
             <AddToCartButton productId={product.id} />
-            <button
-              aria-label="Add to wishlist"
-              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:bg-surface-muted"
-            >
-              <Heart className="h-4 w-4" />
-            </button>
+            <WishlistButton productId={product.id} />
             <button
               aria-label="Compare"
               className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:bg-surface-muted"
             >
               <Repeat className="h-4 w-4" />
             </button>
-            <button
-              aria-label="Share"
-              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:bg-surface-muted"
-            >
-              <Share2 className="h-4 w-4" />
-            </button>
+            <ShareButton title={product.name} />
           </div>
 
           <div className="mt-8 grid grid-cols-3 gap-3">

@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Star, Heart } from "lucide-react";
+import { Star } from "lucide-react";
+import { WishlistButton } from "@/components/WishlistButton";
 import type { Product } from "@/lib/products";
 
 export function ProductCard({ product }: { product: Product }) {
@@ -35,13 +36,13 @@ export function ProductCard({ product }: { product: Product }) {
             -{discount}%
           </span>
         )}
-        <button
-          aria-label="Add to wishlist"
+        <WishlistButton
+          productId={product.id}
           onClick={(e) => e.preventDefault()}
           className="absolute bottom-3 right-3 flex h-9 w-9 items-center justify-center rounded-full bg-background/90 text-foreground opacity-0 shadow-md transition-opacity group-hover:opacity-100"
-        >
-          <Heart className="h-4 w-4" />
-        </button>
+          activeClassName="opacity-100 text-accent"
+          iconClassName="h-4 w-4"
+        />
       </div>
 
       <div className="p-4">

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Search, Heart, ShoppingBag, Menu, X, Sun, Moon } from "lucide-react";
 import { useTheme } from "@/components/ThemeProvider";
 import { useCart } from "@/lib/cart-context";
+import { useWishlist } from "@/lib/wishlist-context";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -20,6 +21,7 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const { itemCount } = useCart();
+  const { count: wishlistCount } = useWishlist();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -82,12 +84,18 @@ export function Navbar() {
           >
             {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </button>
-          <button
+          <Link
+            href="/wishlist"
             aria-label="Wishlist"
-            className="hidden rounded-full p-2 text-foreground/80 transition-colors hover:bg-surface-muted hover:text-foreground sm:inline-flex"
+            className="relative hidden rounded-full p-2 text-foreground/80 transition-colors hover:bg-surface-muted hover:text-foreground sm:inline-flex"
           >
             <Heart className="h-5 w-5" />
-          </button>
+            {wishlistCount > 0 && (
+              <span className="absolute right-1 top-1 flex h-4 w-4 items-center justify-center rounded-full bg-accent text-[10px] font-semibold text-accent-foreground">
+                {wishlistCount > 9 ? "9+" : wishlistCount}
+              </span>
+            )}
+          </Link>
           <Link
             href="/cart"
             aria-label="Cart"
@@ -128,9 +136,13 @@ export function Navbar() {
             ))}
           </nav>
           <div className="mt-3 flex items-center gap-3 px-3">
-            <button className="flex flex-1 items-center justify-center gap-2 rounded-full border border-border py-2.5 text-sm font-medium">
-              <Heart className="h-4 w-4" /> Wishlist
-            </button>
+            <Link
+              href="/wishlist"
+              onClick={() => setMobileOpen(false)}
+              className="flex flex-1 items-center justify-center gap-2 rounded-full border border-border py-2.5 text-sm font-medium"
+            >
+              <Heart className="h-4 w-4" /> Wishlist{wishlistCount > 0 ? ` (${wishlistCount})` : ""}
+            </Link>
             <button className="flex-1 rounded-full bg-foreground py-2.5 text-sm font-medium text-background">
               Sign in
             </button>
