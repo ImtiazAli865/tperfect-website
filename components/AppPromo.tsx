@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Heart, Plus, ShoppingBag } from "lucide-react";
-import { PlaceholderImage } from "@/components/PlaceholderImage";
+import { Heart, ShoppingBag } from "lucide-react";
 
 function PhoneMock({
   className = "",
@@ -44,14 +43,17 @@ export function AppPromo() {
             </button>
           </div>
 
-          <div className="relative flex h-[380px] items-center justify-center sm:h-[440px]">
-            <PhoneMock rotate={-8} delay={0.1} className="absolute left-1/2 -translate-x-[125%]">
-              <PlaceholderImage label="Product" className="aspect-[3/5] w-full rounded-2xl" />
-            </PhoneMock>
-
-            <PhoneMock rotate={0} delay={0} className="relative z-10">
+          <div className="flex h-[380px] items-center justify-center sm:h-[440px]">
+            <PhoneMock rotate={0} delay={0} className="w-64 sm:w-72">
               <div className="space-y-3">
-                <PlaceholderImage label="Elite Bed Pillow" className="aspect-square w-full rounded-2xl" />
+                <video
+                  src="/video/app-promo.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="aspect-square w-full rounded-2xl object-cover"
+                />
                 <div className="flex items-center justify-between px-1">
                   <span className="text-xs font-semibold text-navy">Rs. 2,200</span>
                   <Heart className="h-4 w-4 text-navy" />
@@ -59,23 +61,6 @@ export function AppPromo() {
                 <button className="flex w-full items-center justify-center gap-1.5 rounded-full bg-accent py-2 text-xs font-semibold text-accent-foreground">
                   <ShoppingBag className="h-3.5 w-3.5" /> Add to Cart
                 </button>
-              </div>
-            </PhoneMock>
-
-            <PhoneMock rotate={8} delay={0.2} className="absolute left-1/2 translate-x-[25%]">
-              <div className="space-y-2">
-                <p className="px-1 text-xs font-semibold text-navy">Select Pack Size</p>
-                {["Pack of 1", "Pack of 2", "Pack of 4"].map((size, i) => (
-                  <div
-                    key={size}
-                    className={`flex items-center justify-between rounded-lg border px-2.5 py-1.5 text-[11px] ${
-                      i === 1 ? "border-accent bg-accent-soft text-accent" : "border-border text-navy/70"
-                    }`}
-                  >
-                    {size}
-                    {i === 1 && <Plus className="h-3 w-3" />}
-                  </div>
-                ))}
               </div>
             </PhoneMock>
           </div>
