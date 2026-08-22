@@ -1,3 +1,5 @@
+import { FaWhatsapp } from "react-icons/fa";
+
 const WHATSAPP_NUMBER = "923183707145";
 
 export function WhatsAppButton() {
@@ -9,9 +11,7 @@ export function WhatsAppButton() {
       aria-label="Chat with us on WhatsApp"
       className="fixed bottom-5 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-black/20 transition-transform hover:scale-110"
     >
-      <svg viewBox="0 0 32 32" className="h-8 w-8" fill="currentColor" aria-hidden="true">
-        <path d="M16.004 3C9.377 3 4 8.373 4 15c0 2.386.7 4.607 1.907 6.475L4 29l7.72-1.87A11.94 11.94 0 0 0 16.004 27C22.63 27 28 21.627 28 15S22.63 3 16.004 3Zm7.03 16.986c-.297.834-1.47 1.53-2.403 1.727-.638.135-1.47.243-4.273-.917-3.583-1.483-5.892-5.117-6.073-5.354-.174-.237-1.454-1.933-1.454-3.688 0-1.755.9-2.617 1.22-2.976.32-.359.7-.449.933-.449.233 0 .467.003.671.013.216.01.505-.082.79.603.297.71.99 2.464 1.077 2.643.087.18.145.39.03.628-.116.238-.174.386-.343.594-.174.208-.36.464-.514.623-.174.18-.354.373-.153.732.203.36.9 1.487 1.933 2.407 1.33 1.19 2.451 1.559 2.813 1.734.361.174.573.15.784-.09.216-.238.874-1.02 1.107-1.371.233-.35.465-.29.784-.174.32.117 2.024.955 2.372 1.13.348.174.58.26.667.406.087.146.087.844-.21 1.679Z" />
-      </svg>
+      <FaWhatsapp className="h-8 w-8" aria-hidden="true" />
     </a>
   );
 }
