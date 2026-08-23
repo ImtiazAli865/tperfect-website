@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { MessageCircle, Send, X } from "lucide-react";
 
@@ -90,16 +91,38 @@ export function ChatWidget() {
 
   return (
     <>
-      {!isOpen && (
-        <button
-          type="button"
-          aria-label="Open chat assistant"
-          onClick={() => setIsOpen(true)}
-          className="fixed bottom-24 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-accent text-accent-foreground shadow-lg shadow-accent/30 transition-transform hover:scale-110"
-        >
-          <MessageCircle className="h-6 w-6" />
-        </button>
-      )}
+      <AnimatePresence>
+        {!isOpen && (
+          <motion.div
+            key="chat-launcher"
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.85 }}
+            transition={{ duration: 0.15, ease: "easeOut" }}
+            className="fixed bottom-24 right-5 z-50"
+          >
+            <span className="chat-launcher-label absolute -top-9 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-accent/20 bg-surface px-3 py-1 text-xs font-medium text-accent shadow-md">
+              Need help?
+            </span>
+            <button
+              type="button"
+              aria-label="Open chat assistant"
+              onClick={() => setIsOpen(true)}
+              className="flex h-14 w-14 items-center justify-center rounded-full bg-accent text-accent-foreground shadow-lg shadow-accent/30 transition-transform hover:scale-110"
+            >
+              <span className="relative h-7 w-7 shrink-0 overflow-hidden rounded-full">
+                <Image
+                  src="/images/logo/logo-badge.png"
+                  alt="T.Perfect"
+                  fill
+                  sizes="28px"
+                  className="object-cover"
+                />
+              </span>
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <AnimatePresence>
         {isOpen && (

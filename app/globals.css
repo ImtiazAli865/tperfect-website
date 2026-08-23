@@ -278,6 +278,22 @@ body {
   animation: shimmer-sweep 6s ease-in-out infinite;
 }
 
+/* ---------- Chat widget launcher ---------- */
+
+@keyframes chat-label-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.chat-launcher-label {
+  animation: chat-label-bob 1.8s ease-in-out infinite;
+}
+
 ::selection {
   background: var(--accent-soft);
   color: var(--accent);
