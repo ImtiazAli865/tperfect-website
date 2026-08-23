@@ -1,3 +1,7 @@
+export type GalleryItem =
+  | { type: "image"; src: string }
+  | { type: "animation"; src: string; poster: string };
+
 export type Product = {
   id: string;
   name: string;
@@ -10,6 +14,8 @@ export type Product = {
   image: string;
   /** All photos available for this product/variant — images[0] is the same as `image` and is shown as the hero image; the rest populate the thumbnail strip. */
   images: string[];
+  /** Optional richer gallery (images + animations) for the product page. When present, takes priority over `images` for the ProductGallery. Order determines default main item (index 0) and thumbnail order. */
+  gallery?: GalleryItem[];
   isNew?: boolean;
   description: string;
   tags: string[];
@@ -398,6 +404,16 @@ export const products: Product[] = [
       "/images/baby-care/baby-wedge-pillow-1.png",
       "/images/baby-care/baby-wedge-pillow-colors.png",
       "/images/baby-care/baby-wedge-pillow-detail.png",
+    ],
+    gallery: [
+      {
+        type: "animation",
+        src: "/animations/baby-pillow-promo.html",
+        poster: "/images/baby-care/baby-wedge-pillow-1.png",
+      },
+      { type: "image", src: "/images/baby-care/baby-wedge-pillow-1.png" },
+      { type: "image", src: "/images/baby-care/baby-wedge-pillow-colors.png" },
+      { type: "image", src: "/images/baby-care/baby-wedge-pillow-detail.png" },
     ],
     isNew: true,
     description:
