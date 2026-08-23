@@ -50,7 +50,7 @@ export function ProductImageStack({ images, intervalMs = 2300, className = "" }:
         return (
           <div
             key={typeof image.src === "string" ? image.src : i}
-            className="absolute inset-0 rounded-3xl border border-white/10 bg-white shadow-2xl transition-[transform,opacity] duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+            className="absolute inset-0 rounded-3xl border border-border bg-white shadow-xl transition-[transform,opacity] duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
             style={{
               transform: `translateY(${layer.y}px) scale(${layer.scale})`,
               opacity: layer.opacity,
@@ -80,7 +80,7 @@ export function ProductImageStack({ images, intervalMs = 2300, className = "" }:
             aria-label={`Show ${image.alt}`}
             onClick={() => setActiveIndex(i)}
             className={`h-1.5 rounded-full transition-all duration-300 ${
-              i === activeIndex ? "w-5 bg-accent" : "w-1.5 bg-white/30 hover:bg-white/50"
+              i === activeIndex ? "w-5 bg-accent" : "w-1.5 bg-border hover:bg-muted/50"
             }`}
           />
         ))}

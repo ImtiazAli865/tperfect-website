@@ -26,7 +26,7 @@ export default function WishlistPage() {
         <p className="mt-2 text-sm text-muted">Save products you love to find them here later.</p>
         <Link
           href="/shop"
-          className="mt-8 rounded-full bg-gradient-to-r from-accent to-amber-500 px-7 py-3 text-sm font-semibold text-white shadow-lg shadow-accent/20 transition-transform hover:scale-[1.02]"
+          className="mt-8 rounded-full bg-gradient-to-r from-accent to-accent-hover px-7 py-3 text-sm font-semibold text-white shadow-lg shadow-accent/20 transition-transform hover:scale-[1.02]"
         >
           Continue Shopping
         </Link>

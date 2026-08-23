@@ -40,7 +40,7 @@ export function AddToCartButton({ productId }: { productId: string }) {
       <button
         type="button"
         onClick={handleAdd}
-        className="flex flex-1 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-accent to-amber-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-accent/20 transition-transform hover:scale-[1.02]"
+        className="flex flex-1 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-accent to-accent-hover px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-accent/20 transition-transform hover:scale-[1.02]"
       >
         {added ? (
           <>

@@ -3,37 +3,117 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #faf7f2;
+  --background: #f6f7f9;
   --surface: #ffffff;
-  --surface-muted: #f2ece2;
-  --foreground: #241f1a;
-  --muted: #75695c;
-  --border: #e6ddd0;
+  --surface-muted: #edf0f4;
+  --foreground: #1c2331;
+  --muted: #5b6472;
+  --border: #dde2e9;
 
-  --accent: #c1652e;
-  --accent-hover: #a8531f;
-  --accent-soft: #f1ddc9;
-  --accent-foreground: #fff8f2;
+  --accent: #a5813c;
+  --accent-hover: #8a6a2e;
+  --accent-soft: #ece1c9;
+  --accent-foreground: #fffaf0;
 
-  --navy: #1a1e26;
-  --navy-soft: #262b36;
+  --navy: #131a27;
+  --navy-soft: #1f2734;
+
+  --section-cream: #faf6ec;
+  --section-sage: #f2f6ee;
+  --section-sky: #eef5fa;
+}
+
+/* ---------- Light theme palettes ---------- */
+/* Selecting a palette sets data-palette on <html>; "gold" (default) is
+   defined on :root above so first paint never needs a client-side switch. */
+
+[data-palette="ocean"] {
+  --background: #f5f8fa;
+  --surface: #ffffff;
+  --surface-muted: #e9f1f4;
+  --foreground: #16262c;
+  --muted: #56707a;
+  --border: #d7e3e8;
+
+  --accent: #2f7a78;
+  --accent-hover: #256561;
+  --accent-soft: #d7ece9;
+  --accent-foreground: #f2fbfa;
+
+  --navy: #0f2027;
+  --navy-soft: #1a323a;
+}
+
+[data-palette="sage"] {
+  --background: #f7f8f3;
+  --surface: #ffffff;
+  --surface-muted: #eef1e5;
+  --foreground: #222820;
+  --muted: #65705c;
+  --border: #dee4d2;
+
+  --accent: #5f7a52;
+  --accent-hover: #4c6242;
+  --accent-soft: #e1ead6;
+  --accent-foreground: #f7faf1;
+
+  --navy: #1c2418;
+  --navy-soft: #28331f;
+}
+
+[data-palette="burgundy"] {
+  --background: #f8f6f6;
+  --surface: #ffffff;
+  --surface-muted: #f1e9ea;
+  --foreground: #241c1d;
+  --muted: #725e60;
+  --border: #e3d4d5;
+
+  --accent: #7c2d3a;
+  --accent-hover: #63212c;
+  --accent-soft: #f0d9dc;
+  --accent-foreground: #fdf3f4;
+
+  --navy: #1f1315;
+  --navy-soft: #2c1c1f;
+}
+
+[data-palette="slate"] {
+  --background: #f5f6f8;
+  --surface: #ffffff;
+  --surface-muted: #e9ecf1;
+  --foreground: #1d222b;
+  --muted: #5c6473;
+  --border: #dbdfe7;
+
+  --accent: #3a5a8c;
+  --accent-hover: #2d4670;
+  --accent-soft: #dde6f2;
+  --accent-foreground: #f3f7fd;
+
+  --navy: #131722;
+  --navy-soft: #1c2230;
 }
 
 .dark {
-  --background: #14120f;
-  --surface: #1d1a16;
-  --surface-muted: #26221c;
-  --foreground: #f3ede3;
-  --muted: #a89a89;
-  --border: #35302a;
+  --background: #0f1420;
+  --surface: #161d2b;
+  --surface-muted: #1e2636;
+  --foreground: #eef1f5;
+  --muted: #97a1b0;
+  --border: #2a3345;
 
-  --accent: #e07b3f;
-  --accent-hover: #ec9257;
-  --accent-soft: #3a2c1f;
-  --accent-foreground: #1a1310;
+  --accent: #d4af6a;
+  --accent-hover: #e3c281;
+  --accent-soft: #372c1a;
+  --accent-foreground: #17120a;
 
-  --navy: #0e1015;
-  --navy-soft: #191d26;
+  --navy: #0a0e17;
+  --navy-soft: #141b28;
+
+  --section-cream: #1a1710;
+  --section-sage: #151a12;
+  --section-sky: #10161c;
 }
 
 @theme inline {
@@ -51,6 +131,10 @@
 
   --color-navy: var(--navy);
   --color-navy-soft: var(--navy-soft);
+
+  --color-section-cream: var(--section-cream);
+  --color-section-sage: var(--section-sage);
+  --color-section-sky: var(--section-sky);
 
   --font-sans: var(--font-sans);
   --font-display: var(--font-display);
@@ -116,12 +200,18 @@ body {
 
 .text-3d {
   text-shadow:
-    1px 1px 0 rgba(8, 10, 16, 0.55),
-    2px 2px 0 rgba(8, 10, 16, 0.5),
-    3px 3px 0 rgba(8, 10, 16, 0.45),
-    4px 4px 0 rgba(8, 10, 16, 0.4),
-    5px 5px 0 rgba(8, 10, 16, 0.32),
-    6px 8px 16px rgba(0, 0, 0, 0.55);
+    0 1px 0 rgba(255, 255, 255, 0.7),
+    1px 2px 0 rgba(28, 35, 49, 0.08),
+    2px 3px 2px rgba(28, 35, 49, 0.08),
+    0 10px 24px rgba(28, 35, 49, 0.12);
+}
+
+.dark .text-3d {
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.08),
+    1px 2px 0 rgba(0, 0, 0, 0.35),
+    2px 3px 2px rgba(0, 0, 0, 0.3),
+    0 10px 24px rgba(0, 0, 0, 0.4);
 }
 
 .text-3d-accent {
@@ -180,7 +270,7 @@ body {
 }
 
 .text-shimmer {
-  background-image: linear-gradient(110deg, #ffffff 35%, #ffe3c2 50%, #ffffff 65%);
+  background-image: linear-gradient(110deg, var(--foreground) 35%, var(--accent) 50%, var(--foreground) 65%);
   background-size: 250% 100%;
   -webkit-background-clip: text;
   background-clip: text;

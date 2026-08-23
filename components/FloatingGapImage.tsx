@@ -29,7 +29,7 @@ export function FloatingGapImage({ images, intervalMs = 2600, className = "" }: 
   if (images.length === 0) return null;
 
   return (
-    <div className={`animate-float-towel w-[200px] rounded-2xl border border-white/10 bg-white p-3 shadow-2xl ${className}`}>
+    <div className={`animate-float-towel w-[200px] rounded-2xl border border-border bg-white p-3 shadow-xl ${className}`}>
       <div className="relative aspect-square w-full overflow-hidden rounded-xl">
         {images.map((image, i) => (
           <Image

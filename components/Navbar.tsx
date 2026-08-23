@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Search, Heart, ShoppingBag, Menu, X, Sun, Moon } from "lucide-react";
-import { useTheme } from "@/components/ThemeProvider";
+import { Search, Heart, ShoppingBag, Menu, X, Sun, Moon, Palette as PaletteIcon } from "lucide-react";
+import { useTheme, PALETTES } from "@/components/ThemeProvider";
 import { useCart } from "@/lib/cart-context";
 import { useWishlist } from "@/lib/wishlist-context";
 import { Logo } from "@/components/Logo";
@@ -21,7 +21,8 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
+  const [paletteOpen, setPaletteOpen] = useState(false);
+  const { theme, toggleTheme, palette, setPalette } = useTheme();
   const { itemCount } = useCart();
   const { count: wishlistCount } = useWishlist();
 
@@ -79,6 +80,42 @@ export function Navbar() {
           >
             {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </button>
+          <div className="relative hidden sm:block">
+            <button
+              aria-label="Choose color theme"
+              onClick={() => setPaletteOpen((v) => !v)}
+              className="rounded-full p-2 text-foreground/80 transition-colors hover:bg-surface-muted hover:text-foreground"
+            >
+              <PaletteIcon className="h-5 w-5" />
+            </button>
+            {paletteOpen && (
+              <>
+                <div className="fixed inset-0 z-40" onClick={() => setPaletteOpen(false)} />
+                <div className="absolute right-0 top-full z-50 mt-2 w-44 rounded-xl border border-border bg-surface p-2 shadow-lg">
+                  <p className="px-2 pb-1.5 pt-1 text-xs font-medium text-muted">Color theme</p>
+                  {PALETTES.map((p) => (
+                    <button
+                      key={p.id}
+                      onClick={() => {
+                        setPalette(p.id);
+                        setPaletteOpen(false);
+                      }}
+                      className={`flex w-full items-center gap-2.5 rounded-lg px-2 py-1.5 text-sm transition-colors hover:bg-surface-muted ${
+                        palette === p.id ? "font-semibold text-foreground" : "text-foreground/80"
+                      }`}
+                    >
+                      <span
+                        className="h-3.5 w-3.5 shrink-0 rounded-full border border-black/10"
+                        style={{ backgroundColor: p.swatch }}
+                      />
+                      {p.label}
+                      {palette === p.id && <span className="ml-auto text-accent">✓</span>}
+                    </button>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
           <Link
             href="/wishlist"
             aria-label="Wishlist"

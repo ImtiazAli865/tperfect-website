@@ -40,8 +40,9 @@ const headingLine = {
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-navy text-white">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(224,123,63,0.18),transparent_55%)]" />
+    <section className="relative overflow-hidden bg-white text-foreground">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--accent-soft),transparent_55%)] opacity-70" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,var(--color-section-sky),transparent_50%)]" />
       <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8 lg:py-28">
         {/* Floating gap image — cycles through a few products, sits between the text and the product stack */}
         <div className="pointer-events-none absolute left-1/2 top-1/2 z-10 hidden -translate-x-1/2 -translate-y-1/2 lg:block">
@@ -60,7 +61,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-medium tracking-wide text-white/80">
+          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-1.5 text-xs font-medium tracking-wide text-muted shadow-sm">
             <span className="h-1.5 w-1.5 rounded-full bg-accent" /> NEW COLLECTION
           </span>
 
@@ -94,7 +95,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.95, duration: 0.5 }}
-            className="mt-6 max-w-md text-base text-white/70 sm:text-lg"
+            className="mt-6 max-w-md text-base text-muted sm:text-lg"
           >
             Premium pillows, towels &amp; home essentials. Curated for comfort. Built for every
             home.
@@ -108,13 +109,13 @@ export function Hero() {
           >
             <Link
               href="/shop"
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-accent to-amber-500 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-accent/20 transition-transform hover:scale-[1.03]"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-accent to-accent-hover px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-accent/20 transition-transform hover:scale-[1.03]"
             >
               Shop Now <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               href="/categories"
-              className="text-sm font-medium text-white/80 underline underline-offset-4 transition-colors hover:text-white"
+              className="text-sm font-medium text-foreground/80 underline underline-offset-4 transition-colors hover:text-foreground"
             >
               Browse Categories
             </Link>
@@ -132,10 +133,10 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.5, duration: 0.5 }}
-            className="absolute right-0 top-0 flex items-center gap-2 rounded-2xl border border-white/10 bg-navy-soft/90 px-4 py-3 shadow-xl backdrop-blur"
+            className="absolute right-0 top-0 flex items-center gap-2 rounded-2xl border border-border bg-surface/95 px-4 py-3 shadow-lg backdrop-blur"
           >
             <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
-            <span className="text-xs font-medium text-white/90">4.9 — 10K+ Reviews</span>
+            <span className="text-xs font-medium text-foreground/90">4.9 — 10K+ Reviews</span>
           </motion.div>
 
           <div className="absolute bottom-0 right-2 sm:right-6">
@@ -144,9 +145,9 @@ export function Hero() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.7, duration: 0.5 }}
             >
-              <div className="animate-float-badge-a flex items-center gap-2 rounded-2xl border border-white/10 bg-navy-soft/90 px-4 py-3 shadow-xl backdrop-blur">
+              <div className="animate-float-badge-a flex items-center gap-2 rounded-2xl border border-border bg-surface/95 px-4 py-3 shadow-lg backdrop-blur">
                 <BadgeCheck className="h-4 w-4 text-accent" />
-                <span className="text-xs font-medium text-white/90">100% Cotton · Premium Quality</span>
+                <span className="text-xs font-medium text-foreground/90">100% Cotton · Premium Quality</span>
               </div>
             </motion.div>
           </div>
@@ -157,9 +158,9 @@ export function Hero() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.9, duration: 0.5 }}
             >
-              <div className="animate-float-badge-b flex items-center gap-2 rounded-2xl border border-white/10 bg-navy-soft/90 px-4 py-3 shadow-xl backdrop-blur">
+              <div className="animate-float-badge-b flex items-center gap-2 rounded-2xl border border-border bg-surface/95 px-4 py-3 shadow-lg backdrop-blur">
                 <Flame className="h-4 w-4 text-accent" />
-                <span className="text-xs font-medium text-white/90">Just Launched — New Season</span>
+                <span className="text-xs font-medium text-foreground/90">Just Launched — New Season</span>
               </div>
             </motion.div>
           </div>

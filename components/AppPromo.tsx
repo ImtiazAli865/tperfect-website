@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export function AppPromo() {
   return (
-    <section className="overflow-hidden bg-navy py-20 text-white sm:py-28">
+    <section className="overflow-hidden bg-gradient-to-b from-section-sky to-white py-20 text-foreground sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
           <div className="text-center lg:text-left">
@@ -16,20 +16,19 @@ export function AppPromo() {
               transition={{ duration: 0.7, ease: "easeOut" }}
               style={{
                 transformPerspective: 600,
-                textShadow:
-                  "0 1px 0 rgba(0,0,0,0.25), 0 2px 0 rgba(0,0,0,0.2), 0 3px 0 rgba(0,0,0,0.15), 0 6px 10px rgba(0,0,0,0.35)",
+                textShadow: "0 2px 16px rgba(28,35,49,0.12)",
               }}
               className="text-shimmer animate-float-slow inline-block text-3xl font-bold tracking-tight sm:text-4xl"
             >
               Shop Comfort, Anytime.
             </motion.h2>
-            <p className="mx-auto mt-4 max-w-md text-sm text-white/70 sm:text-base lg:mx-0">
+            <p className="mx-auto mt-4 max-w-md text-sm text-muted sm:text-base lg:mx-0">
               Shop premium bedding, towels &amp; home essentials — all in one place. Fast delivery
               across Pakistan, with Cash on Delivery on every order.
             </p>
             <Link
               href="/shop"
-              className="mt-8 inline-flex rounded-full bg-gradient-to-r from-accent to-amber-500 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-accent/20 transition-transform hover:scale-[1.03]"
+              className="mt-8 inline-flex rounded-full bg-gradient-to-r from-accent to-accent-hover px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-accent/20 transition-transform hover:scale-[1.03]"
             >
               Shop Now
             </Link>
@@ -37,42 +36,31 @@ export function AppPromo() {
 
           <div className="relative flex h-[560px] items-center justify-center sm:h-[680px]">
             {/* Background decoration */}
-            <div className="pointer-events-none absolute left-1/2 top-1/2 h-80 w-80 -translate-x-[65%] -translate-y-[60%] rounded-full bg-accent/30 blur-3xl sm:h-[26rem] sm:w-[26rem]" />
-            <div className="pointer-events-none absolute left-1/2 top-1/2 h-64 w-64 -translate-x-[15%] translate-y-[45%] rounded-full bg-navy-soft/50 blur-3xl sm:h-72 sm:w-72" />
-            <div className="pointer-events-none absolute left-1/2 top-1/2 h-56 w-56 translate-x-[55%] -translate-y-[65%] rounded-full bg-amber-500/20 blur-3xl" />
+            <div className="pointer-events-none absolute left-1/2 top-1/2 h-80 w-80 -translate-x-[65%] -translate-y-[60%] rounded-full bg-accent/25 blur-3xl sm:h-[26rem] sm:w-[26rem]" />
+            <div className="pointer-events-none absolute left-1/2 top-1/2 h-64 w-64 -translate-x-[15%] translate-y-[45%] rounded-full bg-section-sage blur-3xl sm:h-72 sm:w-72" />
+            <div className="pointer-events-none absolute left-1/2 top-1/2 h-56 w-56 translate-x-[55%] -translate-y-[65%] rounded-full bg-section-sky blur-3xl" />
 
             {/* Floating shadow */}
-            <div className="absolute bottom-6 h-8 w-56 rounded-full bg-black/50 blur-2xl sm:w-72" />
+            <div className="absolute bottom-6 h-8 w-56 rounded-full bg-foreground/15 blur-2xl sm:w-72" />
 
-            {/* Phone mockup */}
+            {/* Phone mockup — the video already renders a complete phone-frame product shot,
+                so this wraps it in a single rounded card instead of a second device bezel. */}
             <motion.div
               initial={{ opacity: 0, y: 30, rotate: -4, rotateX: 4, rotateY: -10 }}
               whileInView={{ opacity: 1, y: 0, rotate: -4, rotateX: 4, rotateY: -10 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
               style={{ transformPerspective: 1200 }}
-              className="relative w-[240px] min-[400px]:w-[280px] sm:w-[440px]"
+              className="relative aspect-[4/5] w-[240px] overflow-hidden rounded-[2.5rem] shadow-2xl min-[400px]:w-[280px] sm:w-[440px]"
             >
-              <div className="relative aspect-[4/5] rounded-[3rem] border-[6px] border-neutral-900 bg-neutral-900 p-2 shadow-2xl">
-                {/* Side buttons */}
-                <div className="absolute -left-[6px] top-20 h-8 w-[6px] rounded-l-sm bg-neutral-800" />
-                <div className="absolute -left-[6px] top-32 h-12 w-[6px] rounded-l-sm bg-neutral-800" />
-                <div className="absolute -right-[6px] top-24 h-16 w-[6px] rounded-r-sm bg-neutral-800" />
-
-                {/* Screen */}
-                <div className="relative h-full w-full overflow-hidden rounded-[2.25rem] bg-black">
-                  <video
-                    src="/video/shopping-journey.mp4"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="h-full w-full object-contain"
-                  />
-                  {/* Notch */}
-                  <div className="absolute left-1/2 top-0 h-6 w-28 -translate-x-1/2 rounded-b-2xl bg-neutral-900" />
-                </div>
-              </div>
+              <video
+                src="/video/shopping-journey.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="h-full w-full object-cover"
+              />
             </motion.div>
           </div>
         </div>
