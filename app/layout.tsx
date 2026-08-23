@@ -9,6 +9,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { CartDrawer } from "@/components/CartDrawer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { ChatWidget } from "@/components/ChatWidget";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -59,6 +60,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </CartProvider>
         </ThemeProvider>
         <WhatsAppButton />
+        <ChatWidget />
       </body>
     </html>
   );
