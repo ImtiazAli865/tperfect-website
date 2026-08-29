@@ -7,6 +7,7 @@ import { ProductGridSection } from "@/components/ProductGridSection";
 import { PromoBanner } from "@/components/PromoBanner";
 import { ShopByCategory } from "@/components/ShopByCategory";
 import { AppPromo } from "@/components/AppPromo";
+import Testimonials from "@/components/Testimonials";
 import { products } from "@/lib/products";
 
 export default function Home() {
@@ -25,6 +26,7 @@ export default function Home() {
       <ProductGridSection label="Just Launched" heading="New Arrivals" products={newArrivals} />
       <ShopByCategory />
       <AppPromo />
+      <Testimonials />
     </>
   );
 }
